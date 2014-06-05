@@ -10,6 +10,7 @@ exports.sessionSecret = "i am robot! a robot!"
 exports.isPI = false
 
 child = exec "uname -m", (error, stdout, stderr) ->
+  # if the system is an arm chip we are going to assume its a pi
   if stdout == 'armv6l'
     exports.isPI = true
 
