@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+  if err
+    h4.error-text=err
+  .row
+    h2.text-center sign in
+    .col-sm-6.col-sm-offset-3
+      form.form.form-horizontal(action='/auth/email', method='post')
+        .form-group
+          label email
+          input.form-control(name='email', type='email')
+        .form-group
+          label password
+          input.form-control(name='password', type='password')
+        .form-group
+          button.btn.btn-primary Login
+
+  .row
+    .col-sm-10.col-sm-offset-1
+      hr
+  .row
+    a(href='#create', data-toggle='collapse', data-target='#create')
+      h2.text-center create an account
+    #create.col-sm-6.col-sm-offset-3.collapse.in
+      form.form.form-horizontal(action='/auth/registerEmail', method='post')
+        .form-group
+          label email
+          input.form-control(name='email', type='email')
+        .form-group
+          label name
+          input.form-control(name='name', type='text')
+        .form-group
+          label password
+          input.form-control(name='password', type='password')
+        .form-group
+          label confirm password
+          input.form-control(name='passwordConfirm', type='password')
+        .form-group
+          button.btn.btn-primary Create account

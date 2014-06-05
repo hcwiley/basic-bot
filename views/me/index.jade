@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  .col-sm-10.col-sm-offset-1
+    form.form-horizontal(action='/profile', method='post')
+      input(type='hidden', name='_method', value='PUT')
+      .row
+        .form-group
+          label.col-sm-4 name
+          .col-sm-7.col-sm-offset-1
+            input.form-control(type='name', name='name', required, value='#{user.name ? user.name : ""}')
+      .row
+        .form-group
+          label.col-sm-4 email
+          .col-sm-7.col-sm-offset-1
+            input.form-control(type='email', name='email', required, value='#{user.email}')
+      .row
+        .form-group
+          .col-sm-10.col-sm-offset-1
+            button.btn.btn-primary.btn-block Update
