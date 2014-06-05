@@ -1,4 +1,5 @@
 
+'''
 config    = require './config'
 mongoose  = require 'mongoose'
 fs        = require 'fs'
@@ -47,3 +48,4 @@ User.static "authEmail", (email, password, callback) ->
       callback null, user
 
 exports.User = mongoose.model 'User', User
+'''
