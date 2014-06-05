@@ -9,32 +9,32 @@ path            = require 'path'
 http            = require 'http'
 socketIo        = require "socket.io"
 path            = require 'path'
-mongoose        = require 'mongoose'
+#mongoose        = require 'mongoose'
 _               = require 'underscore'
-passport        = require 'passport'
-User            = require('./models').User
+#passport        = require 'passport'
+#User            = require('./models').User
 
-MongoStore = require('connect-mongo')(express)
-sessionStore = new MongoStore({ url: config.mongodb })
+#MongoStore = require('connect-mongo')(express)
+#sessionStore = new MongoStore({ url: config.mongodb })
 
-LocalStrategy = require('passport-local').Strategy
+#LocalStrategy = require('passport-local').Strategy
 
-passport.use "email", new LocalStrategy
-    usernameField: "email"
-  , (email, password, done) ->
-    process.nextTick ->
-      User.authEmail email, password, done
+#passport.use "email", new LocalStrategy
+    #usernameField: "email"
+  #, (email, password, done) ->
+    #process.nextTick ->
+      #User.authEmail email, password, done
 
-passport.serializeUser (user, done) ->
-  done null, user.id
+#passport.serializeUser (user, done) ->
+  #done null, user.id
 
-passport.deserializeUser (id, done) ->
-  User.findById id, (err, user) ->
-    done err, user
+#passport.deserializeUser (id, done) ->
+  #User.findById id, (err, user) ->
+    #done err, user
 
 
 # connect the database
-mongoose.connect config.mongodb
+#mongoose.connect config.mongodb
 
 # create app, server, and web sockets
 app = express()
@@ -58,9 +58,9 @@ app.configure ->
   app.use express.bodyParser()
   app.use express.methodOverride()
   app.use express.cookieParser config.sessionSecret
-  app.use express.session store: sessionStore
-  app.use passport.initialize()
-  app.use passport.session()
+  #app.use express.session store: sessionStore
+  #app.use passport.initialize()
+  #app.use passport.session()
   app.use app.router
   app.use stylus.middleware
         src: path.join(__dirname,'assets')
