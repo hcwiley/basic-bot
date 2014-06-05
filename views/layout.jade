@@ -7,7 +7,7 @@ else
       -var title = title || "basic bot"
       title=title
       meta(name="viewport",content="width=device-width, initial-scale=1.0")
-      !=css('index')
+      !=css('bootstrap')
       block extra-head
     body
       if !user
@@ -81,5 +81,7 @@ else
               //-li
                 //-a(href='/profile') profile
       #content.container
+        br
+        br
         block content
   !=js('client')
