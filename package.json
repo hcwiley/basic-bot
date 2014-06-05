@@ -14,8 +14,6 @@
     "connect-assets"        : "2.5.3",
     "express"               : "3.*",
     "jade"                  : "0.35.*",
-    "stylus"                : "*",
-    "nib"                   : "*",
     "underscore"            : "*",
     "socket.io"             : "*",
     "socket.io-client"      : "*",
