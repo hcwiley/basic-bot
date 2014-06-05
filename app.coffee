@@ -3,8 +3,6 @@ Module dependencies.
 ###
 config          = require './config'
 express         = require 'express'
-stylus          = require 'stylus'
-nib             = require 'nib'
 path            = require 'path'
 http            = require 'http'
 socketIo        = require "socket.io"
@@ -44,9 +42,6 @@ io = socketIo.listen(server)
 # Make socket.io a little quieter
 io.set "log level", 1
 
-compile = (str, path) ->
-  stylus(str).set('filename', path).use(nib())
-
 app.configure ->
   app.set "port", process.env.PORT or 3000
   app.set "views", __dirname + "/views"
@@ -62,9 +57,6 @@ app.configure ->
   #app.use passport.initialize()
   #app.use passport.session()
   app.use app.router
-  app.use stylus.middleware
-        src: path.join(__dirname,'assets')
-        compile: compile
   app.use express.static path.join(__dirname, "assets")
   app.use express.static path.join(__dirname, "public")
   app.use express.errorHandler()  if config.useErrorHandler
