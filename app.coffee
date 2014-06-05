@@ -71,28 +71,9 @@ app.configure ->
 
 require('./urls') app
 
+
 io.sockets.on "connection",  (socket) ->
-
-  socket?.emit "feedback", "I am your father"
-
-  socket.on "disconnect", ->
-    console.log "disconnected"
-
-  socket.on "up", (data) ->
-    socket?.emit "feedback", "and away"
-    console.log "up!"
-
-  socket.on "down", (data) ->
-    socket?.emit "feedback", "and out"
-    console.log "down!"
-
-  socket.on "left", (data) ->
-    socket?.emit "feedback", "loosey"
-    console.log "left!"
-
-  socket.on "right", (data) ->
-    socket?.emit "feedback", "tighty"
-    console.log "left!"
+  require('./gpio') socket
 
 server.listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")

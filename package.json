@@ -24,6 +24,7 @@
     "passport-local"        : "*",
     "socket.io"             : "*",
     "socket.io-client"      : "*",
-    "supervisor"            : "*"
+    "supervisor"            : "*",
+    "rpi-gpio"              : "*"
   }
 }
