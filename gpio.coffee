@@ -80,6 +80,18 @@ module.exports = (socket) ->
     gpio.setup config.motors.b.dir, gpio.DIR_OUT 
     gpio.setup config.motors.b.pow, gpio.DIR_OUT 
 
+    # set all low
+    gpio.write config.motors.a.dir, false, (err) ->
+      console.log(err) if err?
+    gpio.write config.motors.a.pow, false, (err) ->
+      console.log(err) if err?
+
+    # set motor b to forward
+    gpio.write config.motors.b.dir, false, (err) ->
+      console.log(err) if err?
+    gpio.write config.motors.b.pow, false, (err) ->
+      console.log(err) if err?
+
   # listen for different socket events
   socket?.emit "feedback", "I am your father"
 
