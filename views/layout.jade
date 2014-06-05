@@ -72,14 +72,14 @@ else
             span.icon-bar
         #navbar-collapse.collapse.navbar-collapse
           ul.nav.navbar-nav
-            if !user
-              li
-                a(href='#', data-toggle="modal", data-target="#signin") sign in
-              li
-                a(href='#', data-toggle="modal", data-target="#signup") sign up
-            else
-              li
-                a(href='/profile') profile
+            //-if !user
+              //-li
+                //-a(href='#', data-toggle="modal", data-target="#signin") sign in
+              //-li
+                //-a(href='#', data-toggle="modal", data-target="#signup") sign up
+            //-else
+              //-li
+                //-a(href='/profile') profile
       #content.container
         block content
   !=js('client')

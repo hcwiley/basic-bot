@@ -7,10 +7,11 @@ routes.auth = require './routes/auth'
 module.exports = (app) ->
   app.get '*', (req, res, next) ->
     req.args = {}
-    if req.user
-      req.args['user'] = req.user
-    else
-      return res.redirect '/auth/signin'
+    req.args.user = false
+    #if req.user
+      #req.args['user'] = req.user
+    #else if req.url != '/auth/signin'
+      #return res.redirect '/auth/signin'
     next()
 
   app.get '/', (req, res) ->
