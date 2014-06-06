@@ -18,6 +18,6 @@
     "socket.io"             : "*",
     "socket.io-client"      : "*",
     "supervisor"            : "*",
-    "rpi-gpio"              : "*"
+    "gpio"                  : "*"
   }
 }

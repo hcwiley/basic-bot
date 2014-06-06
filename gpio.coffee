@@ -1,101 +1,103 @@
 
-gpio    = require 'rpi-gpio'
+gpio    = require 'gpio'
 config  = require './config'
+
+stop = ->
+  if config.isPI
+    setTimeout ->
+      pins[config.motors.a.pow].reset()
+      pins[config.motors.a.dir].reset()
+      pins[config.motors.b.pow].reset()
+      pins[config.motors.b.dir].reset()
+      console.log 'stopped'
+    , 1000
 
 forward = ->
   if config.isPI
     # set motor a to forward
-    gpio.write config.motors.a.dir, false, (err) ->
-      console.log(err) if err?
-    gpio.write config.motors.a.pow, true, (err) ->
-      console.log(err) if err?
-
-    # set motor b to forward
-    gpio.write config.motors.b.dir, false, (err) ->
-      console.log(err) if err?
-    gpio.write config.motors.b.pow, true, (err) ->
-      console.log(err) if err?
+    pins[config.motors.a.pow].set(0)
+    pins[config.motors.a.dir].set()
+    pins[config.motors.b.pow].set()
+    pins[config.motors.b.dir].set(0)
 
   console.log 'drove forward'
+
+  stop()
 
 
 backward = ->
   if config.isPI
-    # set motor a to backward
-    gpio.write config.motors.a.dir, true, (err) ->
-      console.log(err) if err?
-    gpio.write config.motors.a.pow, true, (err) ->
-      console.log(err) if err?
-
-    # set motor b to backward
-    gpio.write config.motors.b.dir, true, (err) ->
-      console.log(err) if err?
-    gpio.write config.motors.b.pow, true, (err) ->
-      console.log(err) if err?
+    pins[config.motors.a.pow].set()
+    pins[config.motors.a.dir].set(0)
+    pins[config.motors.b.pow].set(0)
+    pins[config.motors.b.dir].set()
 
   console.log 'drove backward'
 
+  stop()
+
 left = ->
   if config.isPI
-    # set motor a to left
-    gpio.write config.motors.a.dir, true, (err) ->
-      console.log(err) if err?
-    gpio.write config.motors.a.pow, true, (err) ->
-      console.log(err) if err?
-
-    # set motor b to left
-    gpio.write config.motors.b.dir, false, (err) ->
-      console.log(err) if err?
-    gpio.write config.motors.b.pow, true, (err) ->
-      console.log(err) if err?
+    pins[config.motors.a.pow].set(0)
+    pins[config.motors.a.dir].set()
+    pins[config.motors.b.pow].set(0)
+    pins[config.motors.b.dir].set()
 
   console.log 'drove left'
 
+  stop()
+
 right = ->
   if config.isPI
-    # set motor a to right
-    gpio.write config.motors.a.dir, false, (err) ->
-      console.log(err) if err?
-    gpio.write config.motors.a.pow, true, (err) ->
-      console.log(err) if err?
-
-    # set motor b to right
-    gpio.write config.motors.b.dir, true, (err) ->
-      console.log(err) if err?
-    gpio.write config.motors.b.pow, true, (err) ->
-      console.log(err) if err?
+    pins[config.motors.a.pow].set()
+    pins[config.motors.a.dir].set(0)
+    pins[config.motors.b.pow].set()
+    pins[config.motors.b.dir].set(0)
 
   console.log 'drove right'
+
+  stop()
+
+pins = {}
 
 module.exports = (socket) ->
 
   if config.isPI
     #TODO: change these pins to your pins in ./config.coffee
     #Motor A
-    gpio.setup config.motors.a.dir, gpio.DIR_OUT, (err) ->
-      console.log(err) if err?
-    gpio.setup config.motors.a.pow, gpio.DIR_OUT 
+    pins[config.motors.a.pow] = gpio.export config.motors.a.pow, 
+      direction: 'out'
+      interval: 200
+      ready: ->
+        console.log "motors.a.pow ready"
+
+    pins[config.motors.a.dir] = gpio.export config.motors.a.dir, 
+      direction: 'out'
+      interval: 200
+      ready: ->
+        console.log "motors.a.dir ready"
 
     #Motor B
-    gpio.setup config.motors.b.dir, gpio.DIR_OUT 
-    gpio.setup config.motors.b.pow, gpio.DIR_OUT 
+    pins[config.motors.b.pow] = gpio.export config.motors.b.pow, 
+      direction: 'out'
+      interval: 200
+      ready: ->
+        console.log "motors.b.pow ready"
 
-    # set all low
-    gpio.write config.motors.a.dir, false, (err) ->
-      console.log(err) if err?
-    gpio.write config.motors.a.pow, false, (err) ->
-      console.log(err) if err?
-
-    # set motor b to forward
-    gpio.write config.motors.b.dir, false, (err) ->
-      console.log(err) if err?
-    gpio.write config.motors.b.pow, false, (err) ->
-      console.log(err) if err?
+    pins[config.motors.b.dir] = gpio.export config.motors.b.dir, 
+      direction: 'out'
+      interval: 200
+      ready: ->
+        console.log "motors.b.dir ready"
+    
+    stop()
 
   # listen for different socket events
   socket?.emit "feedback", "I am your father"
 
   socket.on "disconnect", ->
+    for pin in pins
+      pin.unexport()
     console.log "disconnected"
 
   socket.on "up", (data) ->
