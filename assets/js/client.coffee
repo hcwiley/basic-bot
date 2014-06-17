@@ -19,4 +19,13 @@ $( ->
   $('.emitter').mouseup (e)->
     socket.emit "stop", "stop"
 
+  $(window).keydown (e)->
+    for el in $("[data-keyboard]")
+      $el = $(el)
+      if e.which == $el.data 'keyboard'
+        socket.emit $el.data('channel'), $el.data 'value'
+
+  $(window).keyup (e)->
+    socket.emit "stop", "stop"
+
 )

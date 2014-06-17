@@ -11,7 +11,6 @@ stop = ->
 
 forward = ->
   if config.isPI
-    # set motor a to forward
     pins[config.motors.a.pow].set()
     pins[config.motors.a.dir].set(0)
     pins[config.motors.b.pow].set()
