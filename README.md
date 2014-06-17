@@ -5,7 +5,6 @@ basic bot is a boiler plate for working with a raspberry pi and the gpio to cont
 
 * Raspberry Pi *(duh)*
 * Node.js
-* Mongo
 
 # setup
 
