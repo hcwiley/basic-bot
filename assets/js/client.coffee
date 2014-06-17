@@ -12,8 +12,11 @@ $( ->
   socket.on "feedback", (msg) ->
     $("#feedback").text msg
 
-  $('.emitter').click (e)->
+  $('.emitter').mousedown (e)->
     $el = $(e.currentTarget)
     socket.emit $el.data('channel'), $el.data 'value'
+
+  $('.emitter').mouseup (e)->
+    socket.emit "stop", "stop"
 
 )

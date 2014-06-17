@@ -8,53 +8,35 @@ stop = ->
     pins[config.motors.a.dir].reset()
     pins[config.motors.b.pow].reset()
     pins[config.motors.b.dir].reset()
-    console.log 'stopped'
 
 forward = ->
   if config.isPI
     # set motor a to forward
     pins[config.motors.a.pow].set()
     pins[config.motors.a.dir].set(0)
-    pins[config.motors.b.pow].set(0)
-    pins[config.motors.b.dir].set()
-
-  console.log 'drove forward'
-
-  stop()
-
+    pins[config.motors.b.pow].set()
+    pins[config.motors.b.dir].set(0)
 
 backward = ->
   if config.isPI
     pins[config.motors.a.pow].set(0)
     pins[config.motors.a.dir].set()
-    pins[config.motors.b.pow].set()
-    pins[config.motors.b.dir].set(0)
-
-  console.log 'drove backward'
-
-  stop()
+    pins[config.motors.b.pow].set(0)
+    pins[config.motors.b.dir].set()
 
 left = ->
   if config.isPI
     pins[config.motors.a.pow].set(0)
     pins[config.motors.a.dir].set()
-    pins[config.motors.b.pow].set(0)
-    pins[config.motors.b.dir].set()
-
-  console.log 'drove left'
-
-  stop()
+    pins[config.motors.b.pow].set()
+    pins[config.motors.b.dir].set(0)
 
 right = ->
   if config.isPI
     pins[config.motors.a.pow].set()
     pins[config.motors.a.dir].set(0)
-    pins[config.motors.b.pow].set()
-    pins[config.motors.b.dir].set(0)
-
-  console.log 'drove right'
-
-  stop()
+    pins[config.motors.b.pow].set(0)
+    pins[config.motors.b.dir].set()
 
 pins = {}
 
