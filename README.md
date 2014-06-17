@@ -1,6 +1,8 @@
 # basic bot
 basic bot is a boiler plate for working with a raspberry pi and the gpio to control things via a web interface
 
+[watch it in action](http://youtu.be/dCIq-Hh_HDI)
+
 # requirements
 
 * Raspberry Pi *(duh)*
