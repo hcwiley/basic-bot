@@ -27,7 +27,7 @@ basic bot is a boiler plate for working with a raspberry pi and the gpio to cont
 | [motor driver ](http://www.amazon.com/ZITRADES-L9110S-Stepper-Driver-Arduino/dp/B00E6NIMAM/ref=sr_1_1?s=electronics&ie=UTF8&qid=1401233566&sr=1-1&keywords=dc+motor+driver) |  1 | $5.38 | $5.38 |
 | [caster](http://www.amazon.com/Shepherd-9489-2-Inch-Swivel-General/dp/B000H5ODN8/ref=sr_1_13?ie=UTF8&qid=1403040421&sr=8-13&keywords=1%22+rubber+caster) |  1 | $2.97 | $2.97 |
 
-### total cost: 136.01
+### total cost: $149.50
 
 
 # license
