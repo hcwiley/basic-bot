@@ -12,11 +12,11 @@ $( ->
   socket.on "feedback", (msg) ->
     $("#feedback").text msg
 
-  $('.emitter').mousedown (e)->
+  $('.emitter').on 'mousedown, touchstart', (e)->
     $el = $(e.currentTarget)
     socket.emit $el.data('channel'), $el.data 'value'
 
-  $('.emitter').mouseup (e)->
+  $('.emitter').on 'mouseup, touchend', (e)->
     socket.emit "stop", "stop"
 
   $(window).keydown (e)->
