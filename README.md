@@ -12,8 +12,7 @@ basic bot is a boiler plate for working with a raspberry pi and the gpio to cont
     $ npm install
 
 # parts
-#### ￼￼￼total cost ￼$136.0
-
+##### total cost: 136.01
 
 
 # license
