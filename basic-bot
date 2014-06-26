@@ -7,4 +7,4 @@ if [ -f .env ]; then
 fi
 
 export PATH=$PATH:$DIR/node_modules/.bin
-supervisor app.coffee
+supervisor app.coffee > $DIR/bot.log 2>$DIR/err.log &

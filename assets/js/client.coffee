@@ -6,11 +6,14 @@ $( ->
   # set up the socket.io
   socket = io.connect() 
 
-  socket.on "connection", (msg) ->
+  socket.on "connect", (msg) ->
     socket.emit "hello", "world"
 
   socket.on "feedback", (msg) ->
     $("#feedback").text msg
+
+  socket.on "still", (msg) ->
+    $("#still").attr 'src', "data:image/jpeg;base64,#{msg}"
 
   $('.emitter').on 'mousedown, touchstart', (e)->
     $el = $(e.currentTarget)

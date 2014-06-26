@@ -7,8 +7,9 @@ path            = require 'path'
 http            = require 'http'
 socketIo        = require "socket.io"
 path            = require 'path'
-#mongoose        = require 'mongoose'
+fs              = require 'fs'
 _               = require 'underscore'
+#mongoose        = require 'mongoose'
 #passport        = require 'passport'
 #User            = require('./models').User
 
@@ -66,6 +67,16 @@ require('./urls') app
 
 io.sockets.on "connection",  (socket) ->
   require('./gpio') socket
+
+imageStreamer = ->
+  fs.readFile "/home/pi/github/basic-bot/public/motion/stil.jpg", (err, data) ->
+    if err
+      console.error err
+    console.log 'red file'
+    io.sockets.emit "still", data.toString('base64')
+    setTimeout imageStreamer, 100
+
+imageStreamer()
 
 server.listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")
