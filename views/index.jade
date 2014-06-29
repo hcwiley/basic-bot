@@ -3,10 +3,8 @@ extends layout
 block content
   .row
     .col-sm-12.text-center
-      h1 basic bot
-      p there's also keyboard steering: up,down,left,right
-    .col-sm-12
       hr
+      img#still.img-thumbnail(src='/motion/stil.jpg')
   .row
     .col-sm-4.col-sm-offset-4.col-xs-12
         button.btn.btn-block.btn-lg.btn-success.emitter(data-channel='up', data-value='', data-keyboard='38')
@@ -35,7 +33,3 @@ block content
         span.glyphicon.glyphicon-chevron-down
         | &nbsp; back &nbsp;
         span.glyphicon.glyphicon-chevron-down
-  .row
-    .col-sm-12
-      hr
-      img#still(src='/motion/stil.jpg')

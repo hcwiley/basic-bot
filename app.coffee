@@ -9,6 +9,7 @@ socketIo        = require "socket.io"
 path            = require 'path'
 fs              = require 'fs'
 _               = require 'underscore'
+exec            = require('child_process').exec
 #mongoose        = require 'mongoose'
 #passport        = require 'passport'
 #User            = require('./models').User
@@ -69,12 +70,13 @@ io.sockets.on "connection",  (socket) ->
   require('./gpio') socket
 
 imageStreamer = ->
-  fs.readFile "/home/pi/github/basic-bot/public/motion/stil.jpg", (err, data) ->
+  exec "raspistill -o - -e jpg -q 20 -w 320 -h 240 -t 1", encoding: 'binary', (err, data, stderr) ->
     if err
       console.error err
-    console.log 'red file'
-    io.sockets.emit "still", data.toString('base64')
-    setTimeout imageStreamer, 100
+    buf = new Buffer data, 'binary'
+    io.sockets.emit "still", buf.toString('base64')
+    process.nextTick ->
+      imageStreamer()
 
 imageStreamer()
 

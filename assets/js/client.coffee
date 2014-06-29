@@ -20,7 +20,9 @@ $( ->
     socket.emit $el.data('channel'), $el.data 'value'
 
   $('.emitter').on 'mouseup, touchend', (e)->
-    socket.emit "stop", "stop"
+    setTimeout ->
+      socket.emit "stop", "stop"
+    , 10
 
   $(window).keydown (e)->
     for el in $("[data-keyboard]")
@@ -29,6 +31,8 @@ $( ->
         socket.emit $el.data('channel'), $el.data 'value'
 
   $(window).keyup (e)->
-    socket.emit "stop", "stop"
+    setTimeout ->
+      socket.emit "stop", "stop"
+    , 10
 
 )
