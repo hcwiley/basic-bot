@@ -65,20 +65,8 @@ app.configure ->
 
 require('./urls') app
 
-
 io.sockets.on "connection",  (socket) ->
   require('./gpio') socket
-
-imageStreamer = ->
-  exec "raspistill -o - -e jpg -q 20 -w 320 -h 240 -t 1", encoding: 'binary', (err, data, stderr) ->
-    if err
-      console.error err
-    buf = new Buffer data, 'binary'
-    io.sockets.emit "still", buf.toString('base64')
-    process.nextTick ->
-      imageStreamer()
-
-imageStreamer()
 
 server.listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")

@@ -1,5 +1,4 @@
 #= require jquery
-#= require bootstrap
 #= require socket.io
 
 $( ->
@@ -7,13 +6,21 @@ $( ->
   socket = io.connect() 
 
   socket.on "connect", (msg) ->
-    socket.emit "hello", "world"
 
   socket.on "feedback", (msg) ->
     $("#feedback").text msg
 
   socket.on "still", (msg) ->
-    $("#still").attr 'src', "data:image/jpeg;base64,#{msg}"
+    img = new Image()
+    img.src = "data:image/jpeg;base64,#{msg}"
+    img.onload = ->
+      if @.complete
+        $("#still").attr 'src', @.src
+    socket.emit "getImage"
+
+  setTimeout ->
+    socket.emit "getImage"
+  , 100
 
   $('.emitter').on 'mousedown, touchstart', (e)->
     $el = $(e.currentTarget)

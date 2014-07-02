@@ -2,9 +2,12 @@ extends layout
 
 block content
   .row
+    br
     .col-sm-12.text-center
-      hr
-      img#still.img-thumbnail(src='/motion/stil.jpg')
+      img#still(width='320px', height='240px', src='/motion/stil.jpg')
+  .row
+    hr
+    br
   .row
     .col-sm-4.col-sm-offset-4.col-xs-12
         button.btn.btn-block.btn-lg.btn-success.emitter(data-channel='up', data-value='', data-keyboard='38')

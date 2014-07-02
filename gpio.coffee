@@ -1,6 +1,7 @@
 
 gpio    = require 'gpio'
 config  = require './config'
+fs      = require 'fs'
 
 stop = ->
   if config.isPI
@@ -73,7 +74,13 @@ module.exports = (socket) ->
 
   # listen for different socket events
   #socket.?emit "feedback", "I am your father"
-  socket.on "hello", (msg)->
+  
+  socket.on "getImage", (msg)->
+    process.nextTick sendImage
+
+  sendImage = ->
+    fs.readFile './public/motion/stil.jpg', (err, data) ->
+      socket.emit "still", data.toString('base64')
 
   socket.on "disconnect", ->
     for pin in pins
