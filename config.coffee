@@ -24,3 +24,6 @@ exports.motors =
   b:
     dir: 22
     pow: 17
+
+exports.sensors =
+  front: 25
