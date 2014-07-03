@@ -12,7 +12,7 @@
     "cookie"                : "*",
     "coffee-script"         : "1.6.3",
     "connect-assets"        : "2.5.3",
-    "express"               : "3.*",
+    "express"               : "3.10.2",
     "jade"                  : "0.35.*",
     "underscore"            : "*",
     "socket.io"             : "*",
