@@ -1,6 +1,7 @@
 
 gpio    = require 'gpio'
 config  = require './config'
+fs      = require 'fs'
 
 stop = ->
   if config.isPI
@@ -72,7 +73,14 @@ module.exports = (socket) ->
     stop()
 
   # listen for different socket events
-  socket?.emit "feedback", "I am your father"
+  #socket.?emit "feedback", "I am your father"
+  
+  socket.on "getImage", (msg)->
+    process.nextTick sendImage
+
+  sendImage = ->
+    fs.readFile './public/motion/stil.jpg', (err, data) ->
+      socket.emit "still", data.toString('base64')
 
   socket.on "disconnect", ->
     for pin in pins
@@ -80,27 +88,27 @@ module.exports = (socket) ->
     console.log "disconnected"
 
   socket.on "up", (data) ->
-    socket?.emit "feedback", "and away"
+    #socket.?emit "feedback", "and away"
     forward()
     console.log "up!"
 
   socket.on "down", (data) ->
-    socket?.emit "feedback", "and out"
+    #socket.?emit "feedback", "and out"
     backward()
     console.log "down!"
 
   socket.on "left", (data) ->
-    socket?.emit "feedback", "loosey"
+    #socket.?emit "feedback", "loosey"
     left()
     console.log "left!"
 
   socket.on "right", (data) ->
-    socket?.emit "feedback", "tighty"
+    #socket.?emit "feedback", "tighty"
     right()
     console.log "right!"
 
   socket.on "stop", (data) ->
-    socket?.emit "feedback", "halt!"
+    #socket.?emit "feedback", "halt!"
     stop()
     console.log "stop!"
 

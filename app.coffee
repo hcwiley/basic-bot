@@ -7,8 +7,10 @@ path            = require 'path'
 http            = require 'http'
 socketIo        = require "socket.io"
 path            = require 'path'
-#mongoose        = require 'mongoose'
+fs              = require 'fs'
 _               = require 'underscore'
+exec            = require('child_process').exec
+#mongoose        = require 'mongoose'
 #passport        = require 'passport'
 #User            = require('./models').User
 
@@ -62,7 +64,6 @@ app.configure ->
   app.use express.errorHandler()  if config.useErrorHandler
 
 require('./urls') app
-
 
 io.sockets.on "connection",  (socket) ->
   require('./gpio') socket
