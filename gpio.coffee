@@ -40,9 +40,6 @@ right = ->
     pins[config.motors.b.pow].set(0)
     pins[config.motors.b.dir].set()
 
-readFrontSensor = ->
-  console.log "front sensor: #{pins[config.sensors.front].value}"
-
 module.exports = (socket) ->
 
   if config.isPI
@@ -75,20 +72,11 @@ module.exports = (socket) ->
     
     stop()
 
-    pins[config.sensors.front] = gpio.export config.sensors.front, 
-      direction: 'in'
-      interval: 200
-      ready: ->
-        console.log "front sensor ready"
-        readFrontSensor()
-    
-
   # listen for different socket events
   #socket.?emit "feedback", "I am your father"
   
   socket.on "getImage", (msg)->
     process.nextTick sendImage
-    readFrontSensor()
 
   sendImage = ->
     fs.readFile './public/motion/stil.jpg', (err, data) ->
