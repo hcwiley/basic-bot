@@ -2,6 +2,7 @@
 gpio    = require 'gpio'
 config  = require './config'
 fs      = require 'fs'
+exec    = require('child_process').exec
 
 pins = {}
 
@@ -78,8 +79,22 @@ module.exports = (socket) ->
   socket.on "getImage", (msg)->
     process.nextTick sendImage
 
+  resetCount = 0
   sendImage = ->
     fs.readFile './public/motion/stil.jpg', (err, data) ->
+      #if data.length < 3795 && data.length > 3970
+      #  resetCount++
+      #if resetCount >= 5
+      #  resetCount = 0
+      #  #console.log "think the camera failed"
+      #  exec "./resetWebCam", (err, stdout, stderr) ->
+      #    console.log stdout
+      #    console.error(stderr) if stderr?
+      #    if err?
+      #      return console.error stderr
+      #    socket.emit "still", data.toString('base64')
+      #else
+      #  resetCount = 0
       socket.emit "still", data.toString('base64')
 
   socket.on "disconnect", ->

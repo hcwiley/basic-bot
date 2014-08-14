@@ -1,0 +1,12 @@
+#!/bin/sh
+
+#echo "this is going use usbreset"
+FULLSTR=$(lsusb | grep QuickCam)
+USBBUS='/dev/bus/usb/'
+USBBUS=$USBBUS$(echo $FULLSTR  | cut -d" " -f 2)'/'
+USBBUS=$USBBUS$(echo $FULLSTR  | cut -d" " -f 4)
+USBBUS=$(echo $USBBUS  | cut -d":" -f 1)
+
+./usbreset $USBBUS
+
+./motionMaker.sh
