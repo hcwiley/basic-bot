@@ -1,76 +1,47 @@
 
-gpio    = require 'gpio'
 config  = require './config'
+piblaster = require "pi-blaster.js"
 fs      = require 'fs'
 exec    = require('child_process').exec
 
-pins = {}
-
 stop = ->
   if config.isPI
-    pins[config.motors.a.pow].reset()
-    pins[config.motors.a.dir].reset()
-    pins[config.motors.b.pow].reset()
-    pins[config.motors.b.dir].reset()
-
-forward = ->
-  if config.isPI
-    pins[config.motors.a.pow].set()
-    pins[config.motors.a.dir].set(0)
-    pins[config.motors.b.pow].set()
-    pins[config.motors.b.dir].set(0)
+    piblaster.setPwm(config.motors.a.pow, 0)
+    piblaster.setPwm(config.motors.a.dir, 0)
+    piblaster.setPwm(config.motors.b.pow, 0)
+    piblaster.setPwm(config.motors.b.dir, 0)
 
 backward = ->
   if config.isPI
-    pins[config.motors.a.pow].set(0)
-    pins[config.motors.a.dir].set()
-    pins[config.motors.b.pow].set(0)
-    pins[config.motors.b.dir].set()
+    piblaster.setPwm(config.motors.a.pow, 1.0)
+    piblaster.setPwm(config.motors.a.dir, 0)
+    piblaster.setPwm(config.motors.b.pow, 1.0)
+    piblaster.setPwm(config.motors.b.dir, 0)
+
+forward = ->
+  if config.isPI
+    piblaster.setPwm(config.motors.a.pow, 0)
+    piblaster.setPwm(config.motors.a.dir, 0.9)
+    piblaster.setPwm(config.motors.b.pow, 0)
+    piblaster.setPwm(config.motors.b.dir, 1.0)
 
 left = ->
   if config.isPI
-    pins[config.motors.a.pow].set(0)
-    pins[config.motors.a.dir].set()
-    pins[config.motors.b.pow].set()
-    pins[config.motors.b.dir].set(0)
+    piblaster.setPwm(config.motors.a.pow, 0)
+    piblaster.setPwm(config.motors.a.dir, 0.6)
+    piblaster.setPwm(config.motors.b.pow, 0.6)
+    piblaster.setPwm(config.motors.b.dir, 0)
 
 right = ->
   if config.isPI
-    pins[config.motors.a.pow].set()
-    pins[config.motors.a.dir].set(0)
-    pins[config.motors.b.pow].set(0)
-    pins[config.motors.b.dir].set()
+    piblaster.setPwm(config.motors.a.pow, 0.6)
+    piblaster.setPwm(config.motors.a.dir, 0)
+    piblaster.setPwm(config.motors.b.pow, 0)
+    piblaster.setPwm(config.motors.b.dir, 0.6)
 
 module.exports = (socket) ->
 
   if config.isPI
-    #TODO: change these pins to your pins in ./config.coffee
-    #Motor A
-    pins[config.motors.a.pow] = gpio.export config.motors.a.pow, 
-      direction: 'out'
-      interval: 200
-      ready: ->
-        console.log "motors.a.pow ready"
-
-    pins[config.motors.a.dir] = gpio.export config.motors.a.dir, 
-      direction: 'out'
-      interval: 200
-      ready: ->
-        console.log "motors.a.dir ready"
-
-    #Motor B
-    pins[config.motors.b.pow] = gpio.export config.motors.b.pow, 
-      direction: 'out'
-      interval: 200
-      ready: ->
-        console.log "motors.b.pow ready"
-
-    pins[config.motors.b.dir] = gpio.export config.motors.b.dir, 
-      direction: 'out'
-      interval: 200
-      ready: ->
-        console.log "motors.b.dir ready"
-    
     stop()
 
   # listen for different socket events
@@ -98,8 +69,6 @@ module.exports = (socket) ->
       socket.emit "still", data.toString('base64')
 
   socket.on "disconnect", ->
-    for pin in pins
-      pin.unexport()
     console.log "disconnected"
 
   socket.on "up", (data) ->

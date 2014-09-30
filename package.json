@@ -18,7 +18,7 @@
     "socket.io"             : "*",
     "socket.io-client"      : "*",
     "supervisor"            : "*",
-    "pm2"                   : "*",
+    "pi-blaster.js"         : "*",
     "gpio"                  : "*"
   }
 }
