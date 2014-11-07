@@ -12,6 +12,10 @@ basic bot is a boiler plate for working with a raspberry pi and the gpio to cont
 
     $ npm install
 
+# running
+
+    $ ./basic-bot
+
 # parts
 
 | part | number | $/item | total $ |
