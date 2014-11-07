@@ -11,17 +11,17 @@ stop = ->
     piblaster.setPwm(config.motors.b.pow, 0)
     piblaster.setPwm(config.motors.b.dir, 0)
 
-backward = ->
+forward = ->
   if config.isPI
     piblaster.setPwm(config.motors.a.pow, 1.0)
     piblaster.setPwm(config.motors.a.dir, 0)
     piblaster.setPwm(config.motors.b.pow, 1.0)
     piblaster.setPwm(config.motors.b.dir, 0)
 
-forward = ->
+backward = ->
   if config.isPI
     piblaster.setPwm(config.motors.a.pow, 0)
-    piblaster.setPwm(config.motors.a.dir, 0.9)
+    piblaster.setPwm(config.motors.a.dir, 1.0)
     piblaster.setPwm(config.motors.b.pow, 0)
     piblaster.setPwm(config.motors.b.dir, 1.0)
 

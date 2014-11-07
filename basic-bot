@@ -11,7 +11,7 @@ then
   killall node
 fi
 
-$DIR/motionMaker.sh
+#$DIR/motionMaker.sh
 
 export PATH=$PATH:$DIR/node_modules/.bin
 coffee app.coffee > $DIR/bot.log 2>$DIR/err.log &
