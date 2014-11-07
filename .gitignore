@@ -2,3 +2,4 @@ node_modules
 *.log
 *.pid
 usbreset
+public/motion/*.jpg
