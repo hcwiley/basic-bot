@@ -1,5 +1,0 @@
-if [ -f .env ]; then
-  source .env
-fi
-export PATH=$PATH:./node_modules/.bin
-supervisor app.coffee
