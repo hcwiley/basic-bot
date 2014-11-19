@@ -31,7 +31,7 @@ basic bot is a boiler plate for working with a raspberry pi and the gpio to cont
 | [buck converter ](http://www.amazon.com/Retailstore-LM2596-Adjustable-Supply-Converter/dp/B009HPB1OI/ref=sr_1_1?s=electronics&ie=UTF8&qid=1403040996&sr=1-1&keywords=buck+converter) |  1 | $7.98 | $7.98 |
 | [caster](http://www.amazon.com/Shepherd-9489-2-Inch-Swivel-General/dp/B000H5ODN8/ref=sr_1_13?ie=UTF8&qid=1403040421&sr=8-13&keywords=1%22+rubber+caster) |  1 | $2.69 | $2.69 |
 
-### total cost: $154.54
+### total cost: $151.82
 
 # aux parts
 
