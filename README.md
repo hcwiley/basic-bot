@@ -7,10 +7,15 @@ basic bot is a boiler plate for working with a raspberry pi and the gpio to cont
 
 * Raspberry Pi *(duh)*
 * Node.js
+* [pi-blaster](https://github.com/sarfata/pi-blaster)
+ 
 
 # setup
 
-    $ npm install
+* follow [pi-blaster](https://github.com/sarfata/pi-blaster#how-to-build-and-install) setup
+
+* ```$ npm install```
+* ```$ gcc -o usbreset usbreset.c```
 
 # running
 
