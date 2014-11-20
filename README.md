@@ -33,12 +33,15 @@ basic bot is a boiler plate for working with a raspberry pi and the gpio to cont
 ### total cost: $130.96
 
 # aux parts
+these are parts you might have laying around already, or have might have access to through a friend
 
 | part | number | $/item | total $ |
 | ---- | ------ | ------ | ------- |
+| [soldering iron](http://www.amazon.com/Weller-WLC100-40-Watt-Soldering-Station/dp/B000AS28UC) | 1 | $38.89 | $38.89 |
+| [multimeter](http://www.amazon.com/Digital-VOLT-Meter-Voltmeter-Multimeter/dp/B005EK3NRS) | 1 | $9.52 | $9.52 |
+| [wire strippers](http://www.amazon.com/Klein-11053-Tools-Kurve-Stripper-Cutter/dp/B000MKH0YC) | 1 | $9.34 | $9.34 |
 | [jumper wires](http://www.amazon.com/Foxnovo-Multicolored-40-pin-Female-Breadboard/dp/B00JUKL4XI) |  1 | $8.99 | $8.99 |
 | [solder](http://www.amazon.com/Alpha-AM62964-Cookson-Lead-Free-Solder/dp/B000G35MX6) | 1 | $5.57 | $5.57 |
-| [soldering iron](http://www.amazon.com/Weller-WLC100-40-Watt-Soldering-Station/dp/B000AS28UC) | 1 | $38.89 | $38.89 |
 
 
 
