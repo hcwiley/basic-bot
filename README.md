@@ -17,6 +17,7 @@ basic bot is a boiler plate for working with a raspberry pi and the gpio to cont
     $ ./basic-bot
 
 # parts
+[amazon list](http://amzn.com/w/2BRUDID1S4T5Z)
 
 | part | number | $/item | total $ |
 | ---- | ------ | ------ | ------- |
