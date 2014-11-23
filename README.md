@@ -33,7 +33,7 @@ basic bot is a boiler plate for working with a raspberry pi and the gpio to cont
 | [motor driver ](http://www.amazon.com/SainSmart-Stepper-Controller-Mega2560-Duemilanove/dp/B00AJGM37I/ref=sr_1_8?ie=UTF8&qid=1403053541&sr=8-8&keywords=motor+driver) |  1 | $9.98 |
 | [wifi dongle ](http://www.amazon.com/Edimax-EW-7811Un-Wireless-Adapter-Wizard/dp/B003MTTJOY/ref=sr_1_1?ie=UTF8&qid=1401234612&sr=8-1&keywords=wifi+usb+raspberry+pi) |  1 | $8.50 |
 | [buck converter ](http://www.amazon.com/Retailstore-LM2596-Adjustable-Supply-Converter/dp/B009HPB1OI/ref=sr_1_1?s=electronics&ie=UTF8&qid=1403040996&sr=1-1&keywords=buck+converter) |  1 | $7.98 |
-| [sd card ](http://www.amazon.com/SanDisk-Memory-Frustration-Free-Packaging--SDSDB-008G-AFFP/dp/B007JRB0TC/ref=sr_1_1?ie=UTF8&qid=1401234644&sr=8-1&keywords=8gb+sd+card) |  1 | $5.76 |
+| [micro sd card ](http://www.amazon.com/SanDisk-Memory-Frustration-Free-Packaging--SDSDB-008G-AFFP/dp/B007JRB0TC/ref=sr_1_1?ie=UTF8&qid=1401234644&sr=8-1&keywords=8gb+sd+card) |  1 | $4.99  |
 
 ### total cost: $129.76
 
