@@ -4,6 +4,8 @@ piblaster = require "pi-blaster.js"
 fs      = require 'fs'
 exec    = require('child_process').exec
 
+pwmPower = 0.75
+
 stop = ->
   if config.isPI
     piblaster.setPwm(config.motors.a.enable1, 0)
@@ -15,33 +17,33 @@ stop = ->
 forward = ->
   if config.isPI
     piblaster.setPwm(config.motors.a.enable1, 0)
-    piblaster.setPwm(config.motors.a.enable2, 1.0)
+    piblaster.setPwm(config.motors.a.enable2, pwmPower)
 
     piblaster.setPwm(config.motors.b.enable1, 0)
-    piblaster.setPwm(config.motors.b.enable2, 0.7)
+    piblaster.setPwm(config.motors.b.enable2, pwmPower)
 
 backward = ->
   if config.isPI
-    piblaster.setPwm(config.motors.a.enable1, 1.0)
+    piblaster.setPwm(config.motors.a.enable1, pwmPower)
     piblaster.setPwm(config.motors.a.enable2, 0)
 
-    piblaster.setPwm(config.motors.b.enable1, 0.6)
+    piblaster.setPwm(config.motors.b.enable1, pwmPower)
     piblaster.setPwm(config.motors.b.enable2, 0)
 
 left = ->
   if config.isPI
-    piblaster.setPwm(config.motors.a.enable1, 0.6)
+    piblaster.setPwm(config.motors.a.enable1, pwmPower)
     piblaster.setPwm(config.motors.a.enable2, 0)
 
     piblaster.setPwm(config.motors.b.enable1, 0)
-    piblaster.setPwm(config.motors.b.enable2, 0.6)
+    piblaster.setPwm(config.motors.b.enable2, pwmPower)
 
 right = ->
   if config.isPI
     piblaster.setPwm(config.motors.a.enable1, 0)
-    piblaster.setPwm(config.motors.a.enable2, 0.6)
+    piblaster.setPwm(config.motors.a.enable2, pwmPower)
 
-    piblaster.setPwm(config.motors.b.enable1, 0.6)
+    piblaster.setPwm(config.motors.b.enable1, pwmPower)
     piblaster.setPwm(config.motors.b.enable2, 0)
 
 module.exports = (socket) ->
@@ -58,9 +60,11 @@ module.exports = (socket) ->
   resetCount = 0
   sendImage = ->
     fs.readFile './public/motion/stil.jpg', (err, data) ->
-      if data.length < 3795
+      if data.length < 3195 && data.length > 3150
         resetCount++
-      if resetCount >= 5
+      else
+        resetCount = 0
+      if resetCount >= 15
         resetCount = 0
         #console.log "think the camera failed"
         exec "./resetWebCam", (err, stdout, stderr) ->
@@ -70,11 +74,14 @@ module.exports = (socket) ->
             return console.error stderr
           socket.emit "still", data.toString('base64')
       else
-        resetCount = 0
-      socket.emit "still", data.toString('base64')
+        socket.emit "still", data.toString('base64')
 
   socket.on "disconnect", ->
     #console.log "disconnected"
+
+  socket.on "pwmPower", (data) ->
+    console.log "updating pwmPower: #{data}"
+    pwmPower = data
 
   socket.on "up", (data) ->
     #socket.?emit "feedback", "and away"

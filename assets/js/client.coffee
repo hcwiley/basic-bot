@@ -1,4 +1,5 @@
 #= require jquery
+#= require bootstrap-slider
 #= require socket.io
 
 $( ->
@@ -41,5 +42,12 @@ $( ->
     setTimeout ->
       socket.emit "stop", "stop"
     , 10
+
+  $('#pwm').on 'slide', (e) ->
+    socket.emit "pwmPower", e.value
+
+  $('#pwm').slider
+      formatter: (value)->
+        'Current value: ' + value
 
 )
